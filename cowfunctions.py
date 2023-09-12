@@ -18,8 +18,8 @@ def Energy (r, v):
 
 def Newpos(x,v,f,dt,time):
     a = [i/m for i in f]
-    dx = x[0]+v[0]*dt+a[0]*time*dt
-    dy = x[1]+v[1]*dt+a[1]*time*dt
+    dx = x[0]+v[0]*dt+a[0]*dt**2
+    dy = x[1]+v[1]*dt+a[1]*dt**2
     return [dx,dy]
 
 def Newv(v, f, dt):

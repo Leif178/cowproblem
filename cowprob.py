@@ -46,10 +46,25 @@ x1=[xlist[i][0] for i in range(len(xlist))]
 x2=[xlist[i][1] for i in range(len(xlist))]
 
 plt.plot(x1,x2)
-plt.xlabel('x axis')
-plt.ylabel('y axis')
+#ax1.xlabel('x axis')
+#ax1.ylabel('y axis')
 plt.title('Trajectory')
+
+
+xA=[]
+yA=[]
+for t in time:
+    xA.append(pos0[0]+v0[0]*t)
+    yA.append(pos0[1]+v0[1]*t+1/2/m*F0[1]*t**2)
+
+plt.plot(xA, yA)
+
+plt.legend(('Numeric','Analytic'))
+
+
 plt.show()
+
+
 
 KE = [Elist[i][0] for i in range(len(Elist))]
 PE = [Elist[i][1] for i in range(len(Elist))]
@@ -72,4 +87,6 @@ for i in range(len(xlist)):
     ys.append(xlist[i][1])
 The = list(zip(time,xs,ys))
 df= pd.DataFrame(The, columns=["Time (s)","X coordinate (m)","Y coordinate (m)"])
-df.to_csv('CowMotion.csv',index=False)
+#
+print(df)
+df.to_csv('CowMotion.txt',index=False, sep=' ', decimal = '.')
