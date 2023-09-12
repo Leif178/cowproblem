@@ -16,9 +16,11 @@ def Energy (r, v):
     H=KE+PE
     return [KE, PE, H]
 
-def Newpos(x,v,f,dt):
+def Newpos(x,v,f,dt,time):
     a = [i/m for i in f]
-    return [x[0]+v[0]*dt+(1/2)*a[0]*dt**2,x[1]+v[1]*dt+(1/2)*a[1]*dt**2]
+    dx = x[0]+(v[0]+a[0]*time)*dt
+    dy = x[1]+(v[1]+a[1]*time)*dt
+    return [dx,dy]
 
 def Newv(v, f, dt):
     return [v[0]+f[0]/m*dt,v[1]+f[1]/m*dt]
