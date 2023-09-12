@@ -3,20 +3,21 @@
 from cowfunctions import *
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 ##############################################################################
 ## Initial conditions
 
 g=9.81 #gravitaional constant
-k=.607 #drag constant
+k=0 #drag constant
 
 m=1000 # mass in kg
-pos0=[0, 15] #initial posistion in meters
-v0=[15.6464,0] #initial position in m/s
+pos0=[0, 1000] #initial posistion in meters
+v0=[1,100] #initial position in m/s
 F0=[-np.sign(v0[0])*k*v0[0]**2,-np.sign(v0[1])*k*v0[1]**2-m*g] # initial force in N
 KE0=1/2*m*(v0[0]**2+v0[1]**2) #Initial Kinetic Energy
 PE0=m*g*pos0[1] #Initial Potential Energy
-dt=0.01 #time step
+dt=0.001 #time step
 t0=0
 
 ##############################################################################
@@ -62,3 +63,13 @@ plt.xlabel('time (sec)')
 plt.ylabel('joules')
 plt.legend()
 plt.show()
+
+
+xs=[]
+ys=[]
+for i in range(len(xlist)):
+    xs.append(xlist[i][0])
+    ys.append(xlist[i][1])
+The = list(zip(time,xs,ys))
+df= pd.DataFrame(The, columns=["Time (s)","X coordinate (m)","Y coordinate (m)"])
+df.to_csv('CowMotion.csv',index=False)
